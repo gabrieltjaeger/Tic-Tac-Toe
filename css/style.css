@@ -1,0 +1,639 @@
+@import url(//db.onlinewebfonts.com/c/163f0b34b7cfa2d1af111b31c705c86e?family=Kabel);
+
+:root {
+    font-size: 1rem;
+    --box-size: 1.53em;
+    --diametro-jogador: .625em;
+    --gap-entre-jogadores: .06em;
+    --bg-color: #d5eadb;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100vh;
+    user-select: none;
+    background: linear-gradient(60deg, #65f693 0%, #fde385 100%) no-repeat center center fixed;
+    position: relative;
+    overflow: hidden;
+}
+
+main {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    width: calc(100vw - 3.5rem);
+    height: max-content;
+}
+
+p{
+    font-size: 16px;
+    margin: 5px 0;
+    font-weight: 500;
+}
+
+button{
+    border-radius: 5px;
+    border: 1px solid rgb(202, 170, 168);
+    cursor: pointer;
+}
+
+button:hover{
+    background: rgb(202, 170, 168);
+    border: 1px solid rgb(105, 58, 58);
+}
+
+button:focus{
+    border:1px solid rgb(105, 58, 58);
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 3rem;
+    height: 100vh;
+    background: #1b2e35;
+    position: sticky;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    padding: 0;
+    box-shadow: .1rem 0 .5rem .1rem rgba(0, 0, 0, 0.4);
+}
+
+nav ul > li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    height: 3rem;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    width: 3rem;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+nav ul > li:hover {
+    background: #fff;
+    color: #1b2e35;
+}
+
+nav ul > li:active {
+    cursor: initial;
+    background: rgba(255, 255, 255, 0.7);
+    color: #fff;
+}
+
+.material-symbols-rounded {
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+  }
+
+.active-button {
+    background: #fff;
+    color: #1b2e35;
+}
+
+#chat-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: stretch;
+    width: 15rem;
+    height: 20rem;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    left: 3rem;
+    z-index: -1;
+    transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+    border-radius: 0 0 1rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.4);
+}
+
+#chat-messages {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    height: calc(100% - 3rem);
+    overflow-y: auto;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.chat-message {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    height: 2rem;
+    margin: .5rem 0;
+}
+
+.chat-message-sender {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 1rem;
+    font-weight: 600;
+    font-size: .8rem;
+    color: #1b2e35;
+}
+
+.chat-message-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    font-weight: 400;
+    font-size: 1rem;
+    color: #1b2e35;
+}
+
+#chat-input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 3rem;
+    background: #ffffff;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+    border-radius: 0 0 1rem;
+}
+
+#chat-input-text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% - 3rem);
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+    border-radius: 0 0 1rem;
+    background: #fff;
+    border: none;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+#chat-input-send {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 2;
+    transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+    border-radius: 1rem 0 1rem;
+    cursor: pointer;
+    background: #1b2e35;
+    border: none;
+    color: #fff;
+}
+
+#chat-input-send:hover {
+    background: #fff;
+    color: #1b2e35;
+}
+
+#chat-input #chat-input-send:hover  {
+    background: #fff;
+    color: #1b2e35;
+}
+
+#chat-input-send:active {
+    background: rgba(255, 255, 255, 0.7);
+    color: #fff;
+}
+
+#chat-input-text:focus {
+    outline: none;
+}
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+#user-identification-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    background: rgb(84, 89, 91, .7);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+    /* transition it going down in the y axis and off the screen */
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.4);
+    border-radius: 1rem 1rem 0 0;
+}
+
+#user-identification-form-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 3rem;
+    background: #1b2e35;
+    z-index: 999;
+    transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 1rem 1rem 0 0;
+}
+
+#user-identification-form-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: calc(100% - 3rem);
+    transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+    color: #1b2e35;
+    font-weight: 400;
+    font-size: 1rem;
+    padding: 2rem;
+}
+
+#user-identification-form-content-name {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .5rem;
+    justify-content: center;
+    width: 100%;
+    height: 4rem;
+    transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+#user-identification-form-content-name-input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 2rem;
+    transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+    font-weight: 400;
+    font-size: 1rem;
+    border: 1px solid #1b2e35;
+    border-radius: .45rem;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+#user-identification-form-content-name-input::placeholder {
+    color: rgb(27, 46, 53, .75);
+    font-weight: 400;
+    font-size: .9rem;
+}
+
+#user-identification-form-content-name label::after {
+    content: ':';
+}
+
+#user-identification-form-content-format {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .5rem;
+    justify-content: center;
+    width: 100%;
+    height: 4rem;
+    transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+#user-identification-form-content-format label::after {
+    content: ':';
+}
+
+#user-identification-form-content-format-input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+    color: #1b2e35;
+    font-weight: 400;
+    font-size: 1rem;
+    border: none;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+#user-identification-form-content-format-input:focus {
+    outline: none;
+}
+
+#user-identification-form-content-format #available-formats {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+    color: #1b2e35;
+    font-weight: 400;
+    font-size: 1rem;
+    border: none;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    gap: .5rem;
+    flex-wrap: wrap;
+}
+
+#user-identification-form-content-format #available-formats .format {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background: #fff;
+    z-index: 999;
+    transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+    color: #1b2e35;
+    font-weight: 400;
+    font-size: 1rem;
+    border: none;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#user-identification-form-content-color #available-formats .format:hover {
+    opacity: 0.5;
+}
+
+#user-identification-form-content-format #available-formats .format.active {
+    opacity: 0.5;
+}
+
+#user-identification-form-content-color #available-formats .format.active:hover {
+    opacity: 0.5;
+}
+
+#user-identification-form-content-submit {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 3rem;
+    z-index: 999;
+    transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+    color: #1b2e35;
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+#user-identification-form-content-submit-button {
+    /* make an elegant button */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 100%;
+    z-index: 999;
+    transition: opacity .3s ease-in-out, visibility .3s ease-in-out;
+    color: #fbfeff;
+    font-weight: 600;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    border: 1px solid #fff;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    cursor: pointer;
+    /* background beautiful gradient */
+    background: linear-gradient(90deg, #5c747d 0%, #3e6572 100%);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    
+}
+
+#user-identification-form-content-submit-button:hover {
+    /* animate it shrinking and sending */
+    transform: scale(0.95);
+
+    opacity: 0.5;
+}
+
+#user-identification-form-content-submit-button:focus {
+    outline: none;
+}
+
+#user-identification-form-content-submit-button:active {
+    transform: scale(0.93);
+
+    
+
+}
+
+#user-identification-form-content-color #available-formats > .format-x {
+    color: red;
+}
+
+#user-identification-form-content-color #available-formats > .format-o {
+    color: blue;
+}
+
+.format.unavailable {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#popup {
+    /* Pop-up that is used to display messages and disappear in 2 seconds */
+    position: absolute;
+    /* centralize */
+    left: 50%;
+    transform: translateX(-50%);
+    /* make it look good */
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background: rgb(27, 46, 53, .75);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    z-index: 9999;
+    /* make an animation of a sliding bar at the bottom of the div */
+    animation: slide .5s ease-in-out;
+    /* make it glass-look */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    width: 15rem;
+    height: 7rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    bottom: 3rem;
+}
+
+
+@keyframes slide {
+    0% {
+        bottom: 0;
+    }
+    100% {
+        bottom: 3rem;
+    }
+}
+
+#popup #popup-message p {
+    /* make the message look good */
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+
+    
+}
+
+.menu-button button {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    color: inherit;
+    font: inherit;
+    cursor: inherit;
+    display: inherit;
+    align-items: inherit;
+    justify-content: inherit;
+    padding: 0;
+    margin: 0;
+    outline: none;
+}
+
+/*
+<div class="board hidden" id="board">
+    <!-- Tic-Tac-Toe -->
+    <div class="board-content" id="board-content">
+        <div class="board-content-row" id="board-content-row-1">
+            <div class="board-content-row-cell" id="board-content-row-1-cell-1"></div>
+            <div class="board-content-row-cell" id="board-content-row-1-cell-2"></div>
+            <div class="board-content-row-cell" id="board-content-row-1-cell-3"></div>
+        </div>
+        <div class="board-content-row" id="board-content-row-2">
+            <div class="board-content-row-cell" id="board-content-row-2-cell-1"></div>
+            <div class="board-content-row-cell" id="board-content-row-2-cell-2"></div>
+            <div class="board-content-row-cell" id="board-content-row-2-cell-3"></div>
+        </div>
+        <div class="board-content-row" id="board-content-row-3">
+            <div class="board-content-row-cell" id="board-content-row-3-cell-1"></div>
+            <div class="board-content-row-cell" id="board-content-row-3-cell-2"></div>
+            <div class="board-content-row-cell" id="board-content-row-3-cell-3"></div>
+        </div>
+    </div>
+</div>
+*/
+
+.board {
+    width: 40vw;
+    height: 40vw;
+}
+
+.board-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.board-content-row {
+    /* make the board look good */
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0.1rem;
+}
+
+.board-content-row-cell {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5rem;
+    background: rgb(42, 42, 42, .9);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    /* make it look like glass */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: .1rem solid rgba(255, 255, 255, 0.18);
+    margin: 0.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 5rem;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+}
+
+.board-content-row-cell:hover {
+    /* make the board look good */
+    background: rgba(255, 255, 255, 0.18);
+}
